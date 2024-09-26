@@ -1,11 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUserUser
-from ..tasks.models import Empresa
+from django.contrib.auth.models import User
 # Create your models here.
 
-class Usuario(AbstractUserUser):
-
-    #CAMPOS EXTRAS
-
-    Email=models.EmailField(blank=False, null=False)
-    Empresa=models.ForeignKey(Empresa,on_delete=models.CASCADE)
+class Profile(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    email=models.EmailField(blank=False, null=False)
+    pfp=models.ImageField(upload_to='media/pfps')
