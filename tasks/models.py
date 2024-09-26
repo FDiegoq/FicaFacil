@@ -31,7 +31,7 @@ class Tarefa(models.Model):
     descricao=models.TextField(blank=False, null=False)
     status=models.CharField(max_length=20,choices=STATUS_CHOICES,blank=False, null=False)
     setor=models.ForeignKey(Setor, on_delete=models.CASCADE, blank=False, null=False)
-    usuario=models.ManyToManyField(User)
+    usuario=models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     imagem=models.ImageField(upload_to='Media/Tarefas/', blank=True, null=True)
     data_criacao=models.DateTimeField(auto_now_add=True)
 
