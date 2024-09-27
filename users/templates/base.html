@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FicaFacil</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="{% static 'assets\imgs\logos\logosm.png'}" type="image/x-icon">
+</head>
+<body class="">
+    <header>
+        <img src="{% static 'assets\imgs\logos\logo.png'%}" alt="Logomarca ficafacil">
+    </header>
+
+    <main>
+        {% block main %}
+
+        {%endblock%}
+    </main>
+
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
