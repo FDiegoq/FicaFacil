@@ -14,8 +14,12 @@ class UserModelForm(forms.ModelForm):
                 'class': 'p-3 bg-stone-800 w-full rounded-lg shadow-md text-white',
                 'placeholder' : 'Digite seu email'
             }),
-            'password': forms.TextInput(attrs={
+            'password': forms.PasswordInput(attrs={
                 'class': 'p-3 bg-stone-800 w-full rounded-lg shadow-md text-white',
                 'placeholder' : 'Crie uma senha'
-            })
+            }),
+                'password2': forms.PasswordInput(attrs={
+                'class': 'p-3 bg-stone-800 w-full rounded-lg shadow-md text-white',
+                'placeholder' : 'Repita a sua senha'
+            }),
         }
