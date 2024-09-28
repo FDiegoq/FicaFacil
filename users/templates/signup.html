@@ -1,17 +1,32 @@
 {% extends 'base.html' %}
 
 {%block main%}
-<main class="flex flex-col mt-36 gap-36 items-center justify-center">
-<div class="flex flex-col justify-center items-center bg-blue-950 w-1/2 p-12">
+<main class="flex flex-col mt-8 gap-36 items-center justify-center ">
+<div class="flex flex-col gap-8 justify-center items-center w-1/2 p-12 bg-gradient-to-b from-sky-950 backdrop-blur-sm border-sky-500 border rounded-3xl">
 
-    <h2>Cadastre-se</h2>
+    <h2 class="text-4xl text-white font-bold mb-8">Cadastre-se</h2>
 
-    <form action="" method="post">
+    <form class="w-full flex flex-col gap-4" action="" method="post">
         <div class="flex flex-col">
-            <label for="username">Nome:</label>
+            <label for="username" class="text-white mb-2">Nome <span class="text-red-500 font-bold">*</span></label>
             {{form.username}}
         </div>
+
+        <div class="flex flex-col">
+            <label for="username" class="text-white mb-2">Email <span class="text-red-500 font-bold">*</span></label>
+            {{form.email}}
+        </div>
+
+        <div class="flex flex-col">
+            <label for="username" class="text-white mb-2">Senha <span class="text-red-500 font-bold">*</span></label>
+            {{form.password}}
+        </div>
+
+        <input type="submit" value="Cadastrar-se" class="bg-sky-500 mt-8 text-white rounded-2xl backdrop-blur-lg p-4 px-16 shadow-lg shadow-sky-500/0 hover:bg-cyan-500 transition-colors cursor-pointer">
     </form>
+
+    <p class="text-white" >Já tem um cadastro? <a class="text-sky-500 hover:text-cyan-500" href="{%url 'login' %}">Faça login!</a></p>
+
 </div>
 </main>
 {%endblock%}
