@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 
 {%block main%}
 <main class="flex flex-col mt-8 gap-36 items-center justify-center ">
@@ -7,6 +7,7 @@
     <h2 class="text-4xl text-white font-bold mb-8">Faça Login!</h2>
 
     <form class="w-full flex flex-col gap-4" action="" method="post">
+        {% csrf_token %}
         <div class="flex flex-col">
             <label for="username" class="text-white mb-2">Nome</label>
             {{form.username}}
