@@ -4,12 +4,12 @@
 <main class="flex flex-col mt-8 gap-36 items-center justify-center ">
 <div class="flex flex-col gap-8 justify-center items-center w-1/2 p-12 bg-gradient-to-b from-sky-950 backdrop-blur-sm border-sky-500 border rounded-3xl">
 
-    <h2 class="text-4xl text-white font-bold mb-8">Faça Login!</h2>
+    <h2 class="text-4xl text-white font-bold mb-8">Bem vindo(a) de volta!</h2>
 
     <form class="w-full flex flex-col gap-4" action="" method="post">
         {% csrf_token %}
         <div class="flex flex-col">
-            <label for="username" class="text-white mb-2">Nome</label>
+            <label for="username" class="text-white mb-2">Nome de usuário</label>
             {{form.username}}
         </div>
 
