@@ -4,6 +4,7 @@
 {%block index%} Home page {%endblock%}
 
 {%block main%} 
+
 {% for task in tasks %}
 <div class="bg-neutral-900 p-4 flex flex-col gap-2 rounded-lg w-[280px] h-[260px] overflow-hidden">
     <div class="flex flex-col gap-3 h-full">
@@ -22,5 +23,8 @@
         </div>
     </div>
 </div>
-{% endfor %}
+{%empty%}
+    <h2 class="text-neutral-500 text-2xl font-bold text-center">Você não tem nenhuma tarefa</h2>
+{%endfor%}
+
 {%endblock%}
