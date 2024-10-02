@@ -2,19 +2,20 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-class Setor(models.Model):
-    nome=models.CharField(max_length=120, blank=False, null=False)
-    descrição=models.TextField(blank=False, null=False)
-
-    def __str__(self):
-        return self.nome
-
 class Empresa(models.Model):
     nome=models.CharField(max_length=340, blank=False, null=False)
     titular=models.CharField(max_length=250, blank=False, null=False)
     regime=models.CharField(max_length=120, blank=False, null=False)
     email=models.EmailField(blank=False, null=False)
     data_abertura=models.DateField(blank=False, null=False)
+
+    def __str__(self):
+        return self.nome
+
+class Setor(models.Model):
+    nome=models.CharField(max_length=120, blank=False, null=False)
+    descricao=models.TextField(blank=False, null=False)
+    empresa=models.ForeignKey(Empresa, on_delete=models.CASCADE, blank=False, null=False)
 
     def __str__(self):
         return self.nome
