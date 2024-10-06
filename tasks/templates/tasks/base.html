@@ -40,7 +40,7 @@
         </div>
 
         <div class="flex flex-col gap-4"> <!--LINKS DO MENUUU-->
-            <a href="" class="">
+            <a href="{% url 'home' %}" class="">
                 <div class="flex flex-wrap gap-2 p-2 bg-neutral-700 rounded-md hover:bg-neutral-800 transition-colors">
                     <i class="material-icons">home</i>
                     <p>Home</p>
@@ -70,7 +70,7 @@
             </a>
         </div>
 
-        <a href=""> <!--Botao para redirecionar lá pra criação de tarefas-->
+        <a href="{% url 'create_task' %}"> <!--Botao para redirecionar lá pra criação de tarefas-->
             <div class="flex justify-center items-center gap-2 bg-sky-500 mt-52 text-white rounded-2xl backdrop-blur-lg p-4 shadow-lg shadow-sky-500/0 hover:bg-cyan-500 transition-colors cursor-pointer">
                 <i class="material-icons">add</i>
                 <p>Criar nova tarefa</p>

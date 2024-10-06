@@ -20,3 +20,7 @@ def home(request):
         'profile': profile
     }
     return render(request, 'home.html', context)
+
+@login_required(login_url='login')
+def create_task(request):
+    return render(request,'create_task.html')
