@@ -17,10 +17,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-neutral-800 text-white flex">
-    <div class="flex flex-col bg-neutral-900 h-screen w-1/5 p-4 gap-8">
+    <div class="flex flex-col bg-neutral-900 h-screen w-1/5 p-4 gap-8 overflow-y-auto">
         <div class="flex gap-4 items-center justify-between">
             <div class="flex gap-2 items-center">
-                <img src="{%static 'imgs/pfp.jpg'%}" alt="" class="rounded-full w-8 h-8">
+                <img src="{profile.pfp.url}" alt="" class="rounded-full w-8 h-8">
                 <p>Olá,<span class="text-sky-300 font-bold"> {{user.username}}</span></p> <!--ALERTA DE MOCKUP-->
             </div>
             <div>
@@ -69,14 +69,22 @@
                 </div>
             </a>
         </div>
+        {%if not profile%}
+            <a href="">
+                <div class="flex bg-amber-200 p-4 rounded-md items-center justify-center gap-1 hover:bg-amber-300 transition-colors">
+                    <i class="material-icons text-red-500">warning</i>
+                    <p class="text-neutral-900 text-wrap ">Complete seu perfil!</p>
+                </div>
+            </a>
+        {%endif%}
 
         <a href="{% url 'create_task' %}"> <!--Botao para redirecionar lá pra criação de tarefas-->
-            <div class="flex justify-center items-center gap-2 bg-sky-500 mt-52 text-white rounded-2xl backdrop-blur-lg p-4 shadow-lg shadow-sky-500/0 hover:bg-cyan-500 transition-colors cursor-pointer">
+            <div class="flex justify-center items-center gap-2 bg-sky-500 mt-auto text-white rounded-2xl backdrop-blur-lg p-4 shadow-lg shadow-sky-500/0 hover:bg-cyan-500 transition-colors cursor-pointer">
                 <i class="material-icons">add</i>
                 <p>Criar nova tarefa</p>
             </div>
         </a>
-
+        
     </div>
 
     <main class="w-screen flex p-6 gap-4 flex-wrap">
