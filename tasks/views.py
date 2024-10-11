@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from tasks.models import Tarefa
 from users.models import Profile
@@ -18,6 +18,14 @@ def home(request):
 @login_required(login_url='login')
 def create_task(request):
     form=taskModelForm()
+    if request.method=='POST':
+        form=taskModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form=taskModelForm()
+        
     return render(request,'create_task.html', {'form':form})
 
 def done_tasks(request):

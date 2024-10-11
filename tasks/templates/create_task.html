@@ -4,25 +4,28 @@
 
 {%block main%} 
     <div class="">
-        <form class="flex flex-col gap-2">
+        <form method="POST" class="flex flex-col gap-2">
+
+            {% csrf_token %}
+
             <div class="flex flex-col gap-1">
-                <label for="">Título:</label>
+                <label for="titulo">Título:</label>
                 {{form.titulo}}
             </div>
             <div class="flex flex-col gap-1" >
-                <label for="">Descrição:</label>
+                <label for="descricao">Descrição:</label>
                 {{form.descricao}}
             </div>
             <div class="flex flex-col gap-1">
-                <label for="">Status:</label>
+                <label for="status">Status:</label>
                 {{form.status}}
             </div>
             <div class="flex flex-col gap-1">
-                <label for="">Setor:</label>
+                <label for="setor">Setor:</label>
                 {{form.setor}}
             </div>
             <div class="flex flex-col gap-1">
-                <label for="">Usuário:</label>
+                <label for="usuario">Usuário:</label>
                 {{form.usuario}}
             </div>
 
