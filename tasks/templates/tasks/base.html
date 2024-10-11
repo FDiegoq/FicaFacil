@@ -20,7 +20,7 @@
     <div class="flex flex-col bg-neutral-900 h-screen w-1/5 p-4 gap-8 overflow-y-auto">
         <div class="flex gap-4 items-center justify-between">
             <div class="flex gap-2 items-center">
-                <img src="{profile.pfp.url}" alt="" class="rounded-full w-8 h-8">
+                <img src="{% static 'imgs/pfp.jpg'%}" alt="" class="rounded-full w-8 h-8">
                 <p>Olá,<span class="text-sky-300 font-bold"> {{user.username}}</span></p> <!--ALERTA DE MOCKUP-->
             </div>
             <div>
@@ -87,7 +87,7 @@
         
     </div>
 
-    <main class="w-screen flex p-6 gap-4 flex-wrap">
+    <main class="flex flex-grow p-6 gap-4 flex-wrap">
         {%block main%}
 
         {%endblock%}
