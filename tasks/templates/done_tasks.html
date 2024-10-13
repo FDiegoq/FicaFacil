@@ -1,0 +1,31 @@
+{% extends 'tasks/base.html' %}
+
+{%block title%} Home {%endblock%}
+
+{%block main%}
+{% for task in tasks %}
+    <div class="bg-neutral-900 p-4 flex flex-col gap-2 rounded-lg w-[280px] h-[260px] overflow-hidden">
+        <div class="flex flex-col gap-3 h-full">
+            <div class="flex flex-col gap-1">
+                <h1 class="text-xl font-bold">{{ task.titulo }}</h1>
+                <div class="flex gap-2">
+                    <p class="text-neutral-600">{{task.status}}</p>
+                    <span class="text-neutral-600">-</span>
+                    <p class="text-neutral-600">{{ task.setor }}</p>
+                    <span class="text-neutral-600">-</span>
+                    <p class="text-neutral-600">{{ task.usuario }}</p>
+                </div>
+            </div>
+            <p class="overflow-hidden text-ellipsis font-thin max-h-[80px] h-[80px]">{{ task.descricao }}</p>
+            <div class="flex flex-col gap-2 mt-auto">
+                <a class="bg-sky-500 text-white rounded-md text-center backdrop-blur-lg p-2 px-8 hover:bg-cyan-500 transition-colors cursor-pointer" href="{% url 'finish_task' task.id %}">Concluir</a>
+                <a href="" class="underline text-sky-600 text-center hover:text-cyan-500 transition-colors">Saber mais</a>
+            </div>
+        </div>
+    </div>
+
+{%empty%}
+    <h2 class="text-neutral-500 text-2xl font-bold text-center">Você não tem nenhuma tarefa</h2>
+{%endfor%}
+
+{% endblock %}

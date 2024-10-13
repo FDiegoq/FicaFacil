@@ -1,10 +1,9 @@
 {% extends 'tasks/base.html' %}
 
-{%block title%} Home {%endblock%}
+{%block title%} Criar Tarefa {%endblock%}
 
 {%block main%} 
-    <div class="">
-        <form method="POST" class="flex flex-col gap-2">
+        <form method="POST" class="flex flex-grow flex-col gap-2">
 
             {% csrf_token %}
 
@@ -25,11 +24,10 @@
                 {{form.setor}}
             </div>
             <div class="flex flex-col gap-1">
-                <label for="usuario">Usuário:</label>
+                <label for="usuario">Atribuir a:</label>
                 {{form.usuario}}
             </div>
 
             <input value="Criar Tarefa" class="bg-sky-500 mt-8 text-white rounded-2xl backdrop-blur-lg p-4 px-16 shadow-lg shadow-sky-500/0 hover:bg-cyan-500 transition-colors cursor-pointer" type="submit">
         </form>
-    </div>
 {%endblock%}
