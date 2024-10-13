@@ -28,5 +28,14 @@ def create_task(request):
         
     return render(request,'create_task.html', {'form':form})
 
+def finish_task(request, id):
+    task=Tarefa.objects.get(id=id)
+    task.is_done=True
+    task.status='Finalizada'
+    task.save()
+    return redirect('home')
+
 def done_tasks(request):
-    ...
+    tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
+    return render(request, 'done_tasks.html', {'tasks':tasks})
+    
