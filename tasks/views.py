@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from tasks.models import Tarefa
-from users.models import Profile
 from .form import taskModelForm
 # Create your views here.
 
@@ -38,4 +37,9 @@ def finish_task(request, id):
 def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
     return render(request, 'done_tasks.html', {'tasks':tasks})
-    
+
+def edit_task(request, id):
+    ...
+
+def delete_task(request, id):
+    ...

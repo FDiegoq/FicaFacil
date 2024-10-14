@@ -4,7 +4,9 @@
 
 {%block main%}
 <div class="flex flex-col flex-grow bg-neutral-700 rounded-md h-screen p-6 gap-2 overflow-y-scroll">
-    <div>
+    <h1 class=" text-xl font-bold">Tarefas concluídas</h1>
+    <div class="flex items-center">
+        <input type="search" placeholder="Busque por tarefas" class="w-full bg-neutral-800 p-2 rounded-md hover:bg-neutral-900">
         <!--Search BArar para implementar-->
     </div>
 {% for task in tasks %}
@@ -19,7 +21,7 @@
         <div class="flex gap-4">
             <a href="">
                 <div class="bg-neutral-500 rounded-md p-2 flex justify-center items-center hover:bg-neutral-600 transition-colors">
-                    <i class="material-icons">edit</i>
+                    <i class="material-icons">restore</i>
                 </div>
             </a>
             <a href="">
@@ -30,7 +32,7 @@
         </div>
     </div>
 {%empty%}
-    <h2 class="text-neutral-500 text-2xl font-bold text-center bg-yellow-300 rounded-md p-4">Você não tem nenhuma tarefa concluída</h2>
+    <h2 class="text-white text-2xl font-bold text-center bg-neutral-500 rounded-md p-4">Você não tem nenhuma tarefa concluída</h2>
 {%endfor%}
 </div>
 {% endblock %}
