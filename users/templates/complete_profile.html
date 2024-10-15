@@ -1,0 +1,26 @@
+{% extends 'tasks/base.html' %}
+
+{%block title%} Completar Perfil {%endblock%}
+
+{%block main%}
+<form method="POST" class="flex flex-grow flex-col gap-2">
+
+    {% csrf_token %}
+
+    <div class="flex flex-col gap-1">
+        <label for="empresa">Empresa</label>
+        {{form.empresa}}
+    </div>
+    <div class="flex flex-col gap-1">
+        <label for="setor">Setor:</label>
+        {{form.setor}}
+    </div>
+    <div class="flex flex-col gap-1 w-1/4 mt-4">
+        <label for="pfp" class="p-3 bg-stone-600 w-full rounded-lg shadow-md text-white cursor-pointer text-center">Upload foto de perfil</label>
+        {{form.pfp}}
+    </div>
+
+    <input value="Completar perfil" class="bg-sky-500 mt-8 text-white rounded-2xl backdrop-blur-lg p-4 px-16 shadow-lg shadow-sky-500/0 hover:bg-cyan-500 transition-colors cursor-pointer" type="submit">
+</form>
+
+{% endblock %}

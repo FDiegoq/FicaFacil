@@ -3,6 +3,7 @@ from .form import UserModelForm
 from .models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
+from .profileform import profileModelForm
 # Create your views here.
 
 def index(request):
@@ -43,3 +44,8 @@ def signup(request):
             user.save()
             return redirect('login')
     return render(request, 'signup.html', {'form':form})
+
+def complete_profile(request):
+    form=profileModelForm()
+    form.user=request.user
+    return render(request, 'complete_profile.html', {'form':form})

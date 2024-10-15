@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from tasks.models import Tarefa
-from users.models import Profile
 from .form import taskModelForm
 # Create your views here.
 
@@ -28,6 +27,7 @@ def create_task(request):
         
     return render(request,'create_task.html', {'form':form})
 
+@login_required(login_url='login')
 def finish_task(request, id):
     task=Tarefa.objects.get(id=id)
     task.is_done=True
@@ -35,7 +35,19 @@ def finish_task(request, id):
     task.save()
     return redirect('home')
 
+@login_required(login_url='login')
 def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
     return render(request, 'done_tasks.html', {'tasks':tasks})
-    
+
+@login_required(login_url='login')
+def task_details(request, id):
+    ...
+
+@login_required(login_url='login')
+def edit_task(request, id):
+    ...
+
+@login_required(login_url='login')
+def delete_task(request, id):
+    ...

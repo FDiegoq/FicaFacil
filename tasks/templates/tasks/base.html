@@ -12,13 +12,11 @@
     <script src="https://cdn.tailwindcss.com"></script><!--Tailwind-->
     <link rel="icon" href="{% static 'imgs/logos/logosm.png' %}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-neutral-800 text-white flex">
-    <div class="flex flex-col bg-neutral-900 h-screen w-1/5 p-4 gap-8 overflow-y-auto">
+    <div class="flex flex-col bg-neutral-900 min-h-screen w-1/5 p-4 gap-8 overflow-y-auto">
         <div class="flex gap-4 items-center justify-between">
             <div class="flex gap-2 items-center">
                 <img src="{% static 'imgs/pfp.jpg'%}" alt="" class="rounded-full w-8 h-8">
@@ -63,7 +61,7 @@
             </a>
         </div>
         {%if not profile%}
-            <a href="">
+            <a href="{% url 'complete_profile' %}">
                 <div class="flex bg-amber-200 p-4 rounded-md items-center justify-center gap-1 hover:bg-amber-300 transition-colors">
                     <i class="material-icons text-red-500">warning</i>
                     <p class="text-neutral-900 text-wrap ">Complete seu perfil!</p>
