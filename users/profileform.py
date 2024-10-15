@@ -6,12 +6,15 @@ class profileModelForm(forms.ModelForm):
         model=Profile
         fields='__all__'
         widgets={
-            'user': forms.Select(attrs={
-                'class': 'p-3 bg-stone-900 w-full rounded-lg shadow-md text-white',}
-            ),
-            'pfp':forms.FileInput(attrs={
+                'pfp':forms.FileInput(attrs={
+                'class': 'hidden'
+            }),
+                'empresa':forms.Select(attrs={
                 'class': 'p-3 bg-stone-900 w-full rounded-lg shadow-md text-white'
-            })
+            }),
+                'setor':forms.Select(attrs={
+                'class': 'p-3 bg-stone-900 w-full rounded-lg shadow-md text-white'
+            }),
 
 
         }

@@ -47,4 +47,5 @@ def signup(request):
 
 def complete_profile(request):
     form=profileModelForm()
+    form.user=request.user
     return render(request, 'complete_profile.html', {'form':form})
