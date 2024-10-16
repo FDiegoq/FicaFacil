@@ -19,11 +19,13 @@
     <div class="flex flex-col bg-neutral-900 min-h-screen w-1/5 p-4 gap-8 overflow-y-auto">
         <div class="flex gap-4 items-center justify-between">
             <div class="flex gap-2 items-center">
-                <img src="{% static 'imgs/pfp.jpg'%}" alt="" class="rounded-full w-8 h-8">
-                <p>Olá,<span class="text-sky-300 font-bold"> {{user.username}}</span></p> <!--ALERTA DE MOCKUP-->
+                <a href="{% url 'profile' %}">
+                    <img src="Media/{{profile.pfp}}" alt="foto de {{user.username}}" class="rounded-full w-8 h-8">
+                </a>
+                <p>Olá,<span class="text-sky-300 font-bold">{{user.username}}</span></p> <!--ALERTA DE MOCKUP-->
             </div>
             <div>
-                <a href="{% url 'login' %}" class="cursor-pointer"><i class="material-icons bg-neutral-700 text-red-400 p-1 rounded hover:bg-neutral-800 transition-colors">logout</i></a>
+                <a href="{% url 'logout' %}" class="cursor-pointer"><i class="material-icons bg-neutral-700 text-red-400 p-1 rounded hover:bg-neutral-800 transition-colors">logout</i></a>
             </div>
         </div>
         <div class="flex flex-col gap-4">

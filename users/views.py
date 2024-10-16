@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect, HttpResponse
 from .form import UserModelForm
 from .models import User
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as login_django
+from django.contrib.auth import login as login_django, logout
 from .profileform import profileModelForm
 # Create your views here.
 
@@ -17,7 +17,7 @@ def login(request):
         username=request.POST.get('username')
         senha=request.POST.get('password')
 
-        user=authenticate(username=username, password=senha)
+        user=authenticate(request, username=username, password=senha)
 
         if user:
             login_django(request, user)
@@ -44,6 +44,10 @@ def signup(request):
             user.save()
             return redirect('login')
     return render(request, 'signup.html', {'form':form})
+
+def exitlogout(request):
+    logout(request)
+    return redirect('index')
 
 def complete_profile(request):
     form=profileModelForm()

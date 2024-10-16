@@ -7,7 +7,8 @@ class profileModelForm(forms.ModelForm):
         fields='__all__'
         widgets={
                 'pfp':forms.FileInput(attrs={
-                'class': 'hidden'
+                'class': 'hidden',
+                'id':'pfp'
             }),
                 'empresa':forms.Select(attrs={
                 'class': 'p-3 bg-stone-900 w-full rounded-lg shadow-md text-white'
