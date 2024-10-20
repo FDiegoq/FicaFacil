@@ -21,11 +21,23 @@ def task_details(request, id):
 
 @login_required(login_url='login') ##tela pra editar as tarefas a partir da tela de detalhes
 def edit_task(request, id):
-    ...
+    task=Tarefa.objects.get(id=id)
+    form=taskModelForm(instance=task)
+    if request.method=='POST':
+        form=taskModelForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form=taskModelForm(instance=task)
+    return render(request, 'create_task.html', {'form':form})
+    
 
 @login_required(login_url='login') ##tela pra excluir as tarefas a partir da tela de detalhes
 def delete_task(request, id):
-    ...
+    task=Tarefa.objects.get(id=id)
+    task.delete()
+    return redirect('home')
 
 @login_required(login_url='login')
 def create_task(request):
@@ -45,6 +57,13 @@ def finish_task(request, id):
     task=Tarefa.objects.get(id=id)
     task.is_done=True
     task.status='Finalizada'
+    task.save()
+    return redirect('home')
+
+def restore_task(request, id):
+    task=Tarefa.objects.get(id=id)
+    task.is_done=False
+    task.status='Pendente'
     task.save()
     return redirect('home')
 
