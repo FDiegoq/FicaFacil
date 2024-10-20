@@ -51,5 +51,12 @@ def exitlogout(request):
 
 def complete_profile(request):
     form=profileModelForm()
-    form.user=request.user
+    if request.method=="POST":
+        form=profileModelForm(request.POST)
+        if form.is_valid():
+            form.user=request.user
+            form.save()
+            return redirect('home')
+    else:
+        form=profileModelForm()
     return render(request, 'complete_profile.html', {'form':form})
