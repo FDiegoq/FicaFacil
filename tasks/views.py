@@ -14,6 +14,19 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+@login_required(login_url='login') ##tela pra detalhar as tarefas
+def task_details(request, id):
+    task=Tarefa.objects.get(id=id)
+    return render(request, 'task_details.html', {'task':task})
+
+@login_required(login_url='login') ##tela pra editar as tarefas a partir da tela de detalhes
+def edit_task(request, id):
+    ...
+
+@login_required(login_url='login') ##tela pra excluir as tarefas a partir da tela de detalhes
+def delete_task(request, id):
+    ...
+
 @login_required(login_url='login')
 def create_task(request):
     form=taskModelForm()
@@ -39,18 +52,6 @@ def finish_task(request, id):
 def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
     return render(request, 'done_tasks.html', {'tasks':tasks})
-
-@login_required(login_url='login')
-def task_details(request, id):
-    ...
-
-@login_required(login_url='login')
-def edit_task(request, id):
-    ...
-
-@login_required(login_url='login')
-def delete_task(request, id):
-    ...
 
 @login_required(login_url='login')
 def profile(request):

@@ -1,0 +1,28 @@
+{% extends 'tasks/base.html' %}
+
+{%block title%} Home {%endblock%}
+
+{%block main%} 
+    <div class="flex flex-col flex-grow bg-neutral-900 rounded-lg h-full p-6 gap-8">
+            <div class="flex flex-col gap-4">
+                <h1 class="text-2xl font-bold">{{task.titulo}}</h1>
+                <div class="flex gap-4">
+                    <div class="bg-neutral-800 p-2 rounded-lg font-thin text-center">{{task.status}}</div>
+                    <div class="bg-neutral-800 p-2 rounded-lg font-thin text-center">{{task.usuario}}</div>
+                    <div class="bg-neutral-800 p-2 rounded-lg font-thin text-center">{{task.setor}}</div>
+                </div>
+            </div>
+            <div class=" p-4 w-full h-full bg-neutral-800 rounded-md">
+                {{task.descricao}}
+            </div>
+        <div class="flex justify-between items-center">
+            <div class="flex gap-4">
+                <a href="" class="border-2 border-red-400 p-2 px-8 text-center rounded-md hover:bg-red-400 transition-colors">Excluir</a>
+                <a href="" class="border-2 border-neutral-600 p-2 px-8 text-center rounded-md hover:bg-neutral-600 transition-colors">Editar</a>
+            </div>
+            <div class="flex gap-4">
+                <a href="" class="bg-sky-500 p-2 px-8 text-center rounded-md hover:bg-cyan-500 transition-colors">Concluir Tarefa</a>
+            </div>
+        </div>
+    </div>
+{%endblock%}
