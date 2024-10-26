@@ -28,6 +28,7 @@ STATUS_CHOICES=[
 
 ]
 class Tarefa(models.Model):
+    cnpj=models.CharField(max_length=20, blank=False, null=False, default='0')
     titulo=models.CharField(max_length=500, blank=False, null=False)
     descricao=models.TextField(blank=False, null=False)
     status=models.CharField(max_length=20,choices=STATUS_CHOICES,blank=False, null=False)

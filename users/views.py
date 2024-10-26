@@ -3,6 +3,7 @@ from .form import UserModelForm
 from .models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django, logout
+from django.contrib.auth.decorators import login_required
 from .profileform import profileModelForm
 # Create your views here.
 
@@ -49,14 +50,14 @@ def exitlogout(request):
     logout(request)
     return redirect('index')
 
+@login_required(login_url='login')
 def complete_profile(request):
     form=profileModelForm()
     if request.method=="POST":
         form=profileModelForm(request.POST)
         if form.is_valid():
-            form.user=request.user
+            profile = form.save(commit=False)
+            profile.user=request.user
             form.save()
             return redirect('home')
-    else:
-        form=profileModelForm()
     return render(request, 'complete_profile.html', {'form':form})

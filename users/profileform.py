@@ -4,7 +4,7 @@ from .models import Profile
 class profileModelForm(forms.ModelForm):
     class Meta():
         model=Profile
-        fields='__all__'
+        fields=['pfp' ,'empresa', 'setor']
         widgets={
                 'pfp':forms.FileInput(attrs={
                 'class': 'hidden',
@@ -16,6 +16,4 @@ class profileModelForm(forms.ModelForm):
                 'setor':forms.Select(attrs={
                 'class': 'p-3 bg-stone-900 w-full rounded-lg shadow-md text-white'
             }),
-
-
         }

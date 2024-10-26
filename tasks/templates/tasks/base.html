@@ -20,7 +20,11 @@
         <div class="flex gap-4 items-center justify-between">
             <div class="flex gap-2 items-center">
                 <a href="{% url 'profile' %}">
-                    <img src="Media/{{profile.pfp}}" alt="foto de {{user.username}}" class="rounded-full w-8 h-8">
+                    {%if profile.pfp%}
+                        <img src="{{profile.pfp.url}}" alt="foto de {{user.username}}" class="rounded-full w-8 h-8">
+                    {%else%}
+                        <img src="" alt="" class="rounded-full w-8 h-8">
+                    {%endif%}
                 </a>
                 <p>Olá, <span class="text-sky-300 font-bold"> {{user.username}}</span></p> <!--ALERTA DE MOCKUP-->
             </div>
@@ -55,7 +59,7 @@
                 </div>
             </a>
     
-            <a href="">
+            <a href="{% url 'dashboard' %}">
                 <div class="flex flex-wrap gap-2 p-2 bg-neutral-700 rounded-md hover:bg-neutral-800 transition-colors">
                     <i class="material-icons">leaderboard</i>
                     <p>Desempenhos</p>
@@ -63,7 +67,7 @@
             </a>
         </div>
     
-        {% if not profile %}
+        {% if not profile_exists %}
         <a href="{% url 'complete_profile' %}">
             <div class="flex bg-amber-200 p-4 rounded-md items-center justify-center gap-1 hover:bg-amber-300 transition-colors">
                 <i class="material-icons text-red-500">warning</i>
@@ -81,9 +85,9 @@
         
     </div>
 
-    <main class="flex flex-grow p-4 gap-4 flex-wrap content-start">
+    <main class="flex flex-grow p-4 gap-2 flex-wrap content-start">
         {%block main%}
-            
+
         {%endblock%}
     </main>
 </body>
