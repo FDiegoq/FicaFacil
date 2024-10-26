@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from tasks.models import Tarefa
+from users.models import Profile
 from .form import taskModelForm
 # Create your views here.
 
@@ -28,8 +29,6 @@ def edit_task(request, id):
         if form.is_valid():
             form.save()
             return redirect('home')
-    else:
-        form=taskModelForm(instance=task)
     return render(request, 'create_task.html', {'form':form})
     
 
@@ -39,20 +38,26 @@ def delete_task(request, id):
     task.delete()
     return redirect('home')
 
-@login_required(login_url='login')
+@login_required(login_url='login') ####Tela para criar novas tarefas
 def create_task(request):
+    try:
+        perfil_logado=Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+       return HttpResponse('Você não possui um perfil associado. Complete seu perfil para habilitar a criação de tarefas.')
+    
     form=taskModelForm()
+    empresa_logada=perfil_logado.empresa
+    perfis_da_empresa=Profile.objects.filter(empresa=empresa_logada)
+    form.fields['perfil'].queryset=perfis_da_empresa
     if request.method=='POST':
         form=taskModelForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
-    else:
-        form=taskModelForm()
         
     return render(request,'create_task.html', {'form':form})
 
-@login_required(login_url='login')
+@login_required(login_url='login') ###URL que finaliza tarefas
 def finish_task(request, id):
     task=Tarefa.objects.get(id=id)
     task.is_done=True
@@ -60,18 +65,18 @@ def finish_task(request, id):
     task.save()
     return redirect('home')
 
-def restore_task(request, id):
+def restore_task(request, id): ####URL QUE VAI RESTAURAR AS TAREFAS
     task=Tarefa.objects.get(id=id)
     task.is_done=False
     task.status='Pendente'
     task.save()
     return redirect('home')
 
-@login_required(login_url='login')
+@login_required(login_url='login') ###TELA DE TAREFAS FINALIZADAS
 def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
     return render(request, 'done_tasks.html', {'tasks':tasks})
 
-@login_required(login_url='login')
+@login_required(login_url='login') ##Perfil do usuário
 def profile(request):
     return render(request, 'profile.html')
