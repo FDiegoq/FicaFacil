@@ -77,6 +77,10 @@ def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
     return render(request, 'done_tasks.html', {'tasks':tasks})
 
+@login_required(login_url='login')
+def tasks_dashboard(request):
+    return render(request, 'tasks_dashboard.html')
+
 @login_required(login_url='login') ##Perfil do usuário
 def profile(request):
     return render(request, 'profile.html')
