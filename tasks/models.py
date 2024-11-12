@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Empresa(models.Model):
+    cnpj=models.CharField(max_length=20, blank=False, null=False, default='0')
     nome=models.CharField(max_length=340, blank=False, null=False)
     titular=models.CharField(max_length=250, blank=False, null=False)
     regime=models.CharField(max_length=120, blank=False, null=False)
@@ -28,7 +29,6 @@ STATUS_CHOICES=[
 
 ]
 class Tarefa(models.Model):
-    cnpj=models.CharField(max_length=20, blank=False, null=False, default='0')
     titulo=models.CharField(max_length=500, blank=False, null=False)
     descricao=models.TextField(blank=False, null=False)
     status=models.CharField(max_length=20,choices=STATUS_CHOICES,blank=False, null=False)

@@ -13,7 +13,9 @@ urlpatterns = [
     path('edit_task/<int:id>', edit_task, name='edit_task'),
     path('delete_task/<int:id>', delete_task, name='delete_task'),
     path('task_details/<int:id>', task_details, name='task_details'),
-    path('tasks_dashboard', tasks_dashboard, name='dashboard')
+    path('tasks_dashboard', tasks_dashboard, name='dashboard'),
+    path('task_filters', task_filters, name='task_filters'),
+    path('search', search_view, name='search')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

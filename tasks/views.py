@@ -14,10 +14,20 @@ def home(request):
         'user': user_logado,
     }
     return render(request, 'home.html', context)
+@login_required
+def search_view(request):
+    query = request.GET.get('searchbar', '')
+    if query:
+        tasks = Tarefa.objects.filter(titulo__icontains=query, is_done=False) | Tarefa.objects.filter(descricao__icontains=query, is_done=False)
+    else:
+        tasks = Tarefa.objects.none() 
+
+    return render(request, 'search.html', {'tasks': tasks, 'query': query})
 
 @login_required(login_url='login') ##tela pra detalhar as tarefas
 def task_details(request, id):
     task=Tarefa.objects.get(id=id)
+    
     return render(request, 'task_details.html', {'task':task})
 
 @login_required(login_url='login') ##tela pra editar as tarefas a partir da tela de detalhes
@@ -46,15 +56,11 @@ def create_task(request):
        return HttpResponse('Você não possui um perfil associado. Complete seu perfil para habilitar a criação de tarefas.')
     
     form=taskModelForm()
-    empresa_logada=perfil_logado.empresa
-    perfis_da_empresa=Profile.objects.filter(empresa=empresa_logada)
-    form.fields['perfil'].queryset=perfis_da_empresa
     if request.method=='POST':
         form=taskModelForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
-        
     return render(request,'create_task.html', {'form':form})
 
 @login_required(login_url='login') ###URL que finaliza tarefas
@@ -82,5 +88,9 @@ def tasks_dashboard(request):
     return render(request, 'tasks_dashboard.html')
 
 @login_required(login_url='login') ##Perfil do usuário
+def task_filters(request):
+    return render(request, 'task_filters.html')
+
+@login_required(login_url='login')
 def profile(request):
     return render(request, 'profile.html')
