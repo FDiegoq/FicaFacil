@@ -7,23 +7,31 @@ class taskModelForm(forms.ModelForm):
         fields='__all__'
         widgets={
                 'titulo': forms.TextInput(attrs={
-                'class': 'p-3 bg-neutral-900 w-auto rounded-lg shadow-md text-white',
+                'class': 'p-3 bg-neutral-900 w-auto rounded-lg text-white',
                 'placeholder' : 'Digite o título da tarefa'
             }),
                 'descricao': forms.Textarea(attrs={
-                'class': 'p-3 bg-neutral-900 w-auto rounded-lg shadow-md text-white',
+                'class': 'p-3 bg-neutral-900 w-auto rounded-lg text-white',
                 'placeholder' : 'Detalhe a descrição da tarefa'
             }),
                 'status': forms.Select(attrs={
-                'class': 'p-2 bg-neutral-900 w-auto rounded-lg shadow-md text-white',
+                'class': 'p-2 bg-neutral-900 w-auto rounded-lg text-white',
                 'placeholder' : 'Status da tarefa'
             }),
                 'setor': forms.Select(attrs={
-                'class': 'p-2 bg-neutral-900 w-auto rounded-lg shadow-md text-white',
+                'class': 'p-2 bg-neutral-900 w-auto rounded-lg text-white',
                 'placeholder' : 'Digite seu nome de usuário'
             }),
                 'usuario': forms.Select(attrs={
-                'class': 'p-2 bg-neutral-900 w-auto rounded-lg shadow-md text-white',
+                'class': 'p-2 bg-neutral-900 w-auto rounded-lg text-white',
                 'placeholder' : 'Digite seu nome de usuário'
             })
+        }
+class FilterTask(forms.ModelForm):
+    class Meta():
+        model=Tarefa
+        fields=['status', 'setor']
+        widgets={
+            'setor':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md'}),
+            'status':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md'})
         }
