@@ -31,7 +31,7 @@ STATUS_CHOICES=[
 class Tarefa(models.Model):
     titulo=models.CharField(max_length=500, blank=False, null=False)
     descricao=models.TextField(blank=False, null=False)
-    status=models.CharField(max_length=20,choices=STATUS_CHOICES,blank=False, null=False)
+    status=models.CharField(max_length=20, choices=STATUS_CHOICES,blank=False, null=False)
     setor=models.ForeignKey(Setor, on_delete=models.CASCADE, blank=False, null=False)
     usuario=models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     data_criacao=models.DateTimeField(auto_now_add=True)

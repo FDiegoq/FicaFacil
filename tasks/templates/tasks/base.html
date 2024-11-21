@@ -10,13 +10,15 @@
     </title>
     {% load static %}
     <script src="https://cdn.tailwindcss.com"></script><!--Tailwind-->
+    <script src="/static/JS/menu.js"></script>
     <link rel="icon" href="{% static 'imgs/logos/logosm.png' %}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-neutral-800 text-white flex">
-    <div class="flex flex-col bg-neutral-900 min-h-screen w-1/5 p-4 gap-8 overflow-y-auto flex-shrink-0">
+    <button class="material-icons p-2 bg-sky-800 h-1/6 rounded-md hover:bg-sky-700 transition-colors" id="menu-toggle" onclick="handleMenu()">menu</button>
+    <div class="flex flex-col bg-neutral-900 min-h-screen w-1/5 p-4 gap-8 overflow-y-auto flex-shrink-0" id="menu">
         <div class="flex gap-4 items-center justify-between">
             <div class="flex gap-2 items-center">
                 <a href="{% url 'profile' %}">
@@ -85,7 +87,7 @@
         
     </div>
 
-    <main class="flex-col space-y-4 flex-grow p-4 flex-wrap content-start min-h-screen">
+    <main class="flex-col space-y-4 flex-grow p-3 flex-wrap content-start min-h-screen">
         {%block main%}
 
         {%endblock%}
