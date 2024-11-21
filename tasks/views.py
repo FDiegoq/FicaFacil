@@ -4,17 +4,23 @@ from tasks.models import Tarefa
 from users.models import Profile
 from .form import taskModelForm
 from .form import FilterTask
+from django.core.paginator import Paginator
 # Create your views here.
 
 @login_required(login_url='login')
 def home(request):
     user_logado=request.user
     filtertask=FilterTask()
-    tasks = Tarefa.objects.filter(usuario=user_logado, is_done=False) ##Aqui eu estou retornando uma lista de tarefas filtrando por usuário e por tarefa terminada
+    setor=request.GET.get('setor')
+    status=request.GET.get('status')
+    if setor or status:
+        tasks=Tarefa.objects.filter(usuario=user_logado, is_done=False, setor=setor, status=status)
+    else:
+        tasks = Tarefa.objects.filter(usuario=user_logado, is_done=False) ##Aqui eu estou retornando uma lista de tarefas filtrando por usuário e por tarefa terminada
     context={
         'tasks': tasks,
         'user': user_logado,
-        'filtertask':filtertask
+        'filtertask': filtertask,
     }
     return render(request, 'home.html', context)
 
@@ -93,6 +99,9 @@ def tasks_dashboard(request):
 
 @login_required(login_url='login') ##Perfil do usuário
 def task_filters(request):
+    if request.method=='GET':
+        
+        filtradas=Tarefa.objects.filter(titulo='icontais__'),
     return render(request, 'home.html')
 
 @login_required(login_url='login')

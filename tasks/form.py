@@ -32,6 +32,10 @@ class FilterTask(forms.ModelForm):
         model=Tarefa
         fields=['status', 'setor']
         widgets={
-            'setor':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md'}),
-            'status':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md'})
+            'setor':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md', 'name':'setor'}),
+            'status':forms.Select( attrs={'class':'bg-neutral-800 text-white rounded-md', 'status':'status'})
+        }
+        requireds={
+            'status': False,
+            'status': True
         }
