@@ -13,15 +13,23 @@ def home(request):
     filtertask=FilterTask()
     setor=request.GET.get('setor')
     status=request.GET.get('status')
-    if setor or status:
-        tasks=Tarefa.objects.filter(usuario=user_logado, is_done=False, setor=setor, status=status)
+
+    if status or setor: ##testa se nao é vazio
+        if setor:
+            tasks=Tarefa.objects.filter(usuario=user_logado, is_done=False, setor=setor) ##apenas setor
+        if status:    
+            tasks=Tarefa.objects.filter(usuario=user_logado, is_done=False, status=status) ##apenas status
+        if status and setor:
+            tasks=Tarefa.objects.filter(usuario=user_logado, is_done=False, status=status, setor=setor) #status e setor
     else:
         tasks = Tarefa.objects.filter(usuario=user_logado, is_done=False) ##Aqui eu estou retornando uma lista de tarefas filtrando por usuário e por tarefa terminada
+    
     context={
         'tasks': tasks,
         'user': user_logado,
         'filtertask': filtertask,
     }
+    
     return render(request, 'home.html', context)
 
 @login_required
