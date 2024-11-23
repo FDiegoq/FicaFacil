@@ -35,7 +35,8 @@ class FilterTask(forms.ModelForm):
             'setor':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md', 'name':'setor'}),
             'status':forms.Select( attrs={'class':'bg-neutral-800 text-white rounded-md', 'status':'status'})
         }
-        requireds={
-            'status': False,
-            'status': True
-        }
+    def __init__(self, *args, **kwargs):
+        super(FilterTask, self).__init__(*args, **kwargs)
+        self.fields['status'].required = False
+        self.fields['setor'].required = False
+
