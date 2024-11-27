@@ -1,6 +1,7 @@
 const handleMenu=()=>{
-    const toggle=document.getElementById('menu-toggle')
+    const toggle = document.getElementById('menu-toggle')
     const menu = document.getElementById('menu')
+
     if (menu.classList.contains('hidden')){
         menu.classList.remove('hidden')
         menu.classList.add('flex')
@@ -14,5 +15,4 @@ const handleMenu=()=>{
         toggle.classList.add('bg-sky-950')
         console.log("menu escondido")
     }
-
 };

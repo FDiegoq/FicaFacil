@@ -107,11 +107,11 @@ def tasks_dashboard(request):
 
 @login_required(login_url='login') ##Perfil do usuário
 def task_filters(request):
-    if request.method=='GET':
-        
+    if request.method=='GET': 
         filtradas=Tarefa.objects.filter(titulo='icontais__'),
     return render(request, 'home.html')
 
 @login_required(login_url='login')
 def profile(request):
+
     return render(request, 'profile.html')
