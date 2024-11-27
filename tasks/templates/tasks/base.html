@@ -18,6 +18,12 @@
 </head>
 <body class="bg-neutral-800 text-white flex">
     <div class="flex flex-col bg-neutral-900 min-h-screen w-1/5 p-4 gap-8 overflow-y-auto flex-shrink-0" id="menu">
+    <!--<div id="menu-toggle">
+            <button>
+                <i class="material-icons bg-sky-600 p-2 rounded-md hover:bg-sky-700 transition-colors">menu</i>
+            </button>
+        </div>
+        -->
         <div class="flex gap-4 items-center justify-between">
             <div class="flex gap-2 items-center">
                 <a href="{% url 'profile' %}">
@@ -27,7 +33,7 @@
                         <img src="" alt="" class="rounded-full w-8 h-8">
                     {%endif%}
                 </a>
-                <p>Olá, <span class="text-sky-300 font-bold"> {{user.username}}</span></p> <!--ALERTA DE MOCKUP-->
+                <p>Olá, <span class="text-sky-300 font-bold"> <a href="{% url 'profile' %}">{{user.username}}</a></span></p> <!--ALERTA DE MOCKUP-->
             </div>
             <div>
                 <a href="{% url 'logout' %}" class="cursor-pointer"><i class="material-icons bg-neutral-700 text-red-400 p-1 rounded hover:bg-neutral-800 transition-colors">logout</i></a>
@@ -49,7 +55,7 @@
             <a href="{% url 'home' %}" class="">
                 <div class="flex flex-wrap gap-2 p-2 bg-neutral-700 rounded-md hover:bg-neutral-800 transition-colors">
                     <i class="material-icons">home</i>
-                    <p>Home</p>
+                    <p>Início</p>
                 </div>
             </a>
     
