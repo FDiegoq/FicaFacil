@@ -30,10 +30,10 @@ class taskModelForm(forms.ModelForm):
 class FilterTask(forms.ModelForm):
     class Meta():
         model=Tarefa
-        fields=['status', 'setor']
+        fields=['status', 'setor', 'usuario']
         widgets={
-            'setor':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md', 'name':'setor'}),
-            'status':forms.Select( attrs={'class':'bg-neutral-800 text-white rounded-md', 'status':'status'})
+            'setor':forms.Select(attrs={'class':'bg-neutral-800 text-white rounded-md p-1', 'name':'setor'}),
+            'status':forms.Select( attrs={'class':'bg-neutral-800 text-white rounded-md p-1', 'status':'status'}),
         }
     def __init__(self, *args, **kwargs):
         super(FilterTask, self).__init__(*args, **kwargs)
