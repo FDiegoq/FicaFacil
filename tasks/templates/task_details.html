@@ -17,8 +17,11 @@
             </div>
         <div class="flex justify-between items-center">
             <div class="flex gap-4">
-                <a href="{% url 'delete_task' task.id %}" class="border-2 border-red-400 p-2 px-8 text-center rounded-md hover:bg-red-400 transition-colors">Excluir</a>
-                <a href="{% url 'edit_task' task.id %}" class="border-2 border-neutral-600 p-2 px-8 text-center rounded-md hover:bg-neutral-600 transition-colors">Editar</a>
+                <a href="{% url 'home' %}" class="material-icons border-2 border-neutral-400 p-2 px-4 text-center rounded-md hover:bg-neutral-400 transition-colors">arrow_back</a>
+                {% if request.user.is_staff %}
+                    <a href="{% url 'delete_task' task.id %}" class="border-2 border-red-400 p-2 px-8 text-center rounded-md hover:bg-red-400 transition-colors">Excluir</a>
+                    <a href="{% url 'edit_task' task.id %}" class="border-2 border-neutral-600 p-2 px-8 text-center rounded-md hover:bg-neutral-600 transition-colors">Editar</a>
+                {% endif %}
             </div>
             <div class="flex gap-4">
                 <a href="{% url 'finish_task' task.id %}" class="bg-sky-500 p-2 px-8 text-center rounded-md hover:bg-cyan-500 transition-colors">Concluir Tarefa</a>

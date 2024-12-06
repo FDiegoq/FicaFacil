@@ -36,6 +36,7 @@ class Tarefa(models.Model):
     usuario=models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     data_criacao=models.DateTimeField(auto_now_add=True)
     is_done=models.BooleanField(default=False ,null=False, blank=False)
+    data_conclusao=models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.titulo

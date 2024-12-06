@@ -1,18 +1,17 @@
 {% extends 'tasks/base.html' %}
 
-{%block title%} Completar Perfil {%endblock%}
-
 {%block main%}
+<h2 class="text-neutral-500 text-2xl font-bold text-cente content-center" >Nos conte mais sobre você!</h2>
 <form method="POST" class="flex flex-grow flex-col gap-2">
 
     {% csrf_token %}
 
     <div class="flex flex-col gap-1">
-        <label for="empresa">Empresa</label>
+        <label for="empresa">Onde você trabalha?</label>
         {{form.empresa}}
     </div>
     <div class="flex flex-col gap-1">
-        <label for="setor">Setor:</label>
+        <label for="setor">Qual é o seu setor?</label>
         {{form.setor}}
     </div>
     <label for="pfp" class="flex gap-2 w-1/4 mt-4 p-3 justify-center items-center bg-stone-600 rounded-lg shadow-md text-white text-center cursor-pointer">

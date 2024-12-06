@@ -4,7 +4,7 @@
 
 {%block main%}
 <div class="self-center text-center flex justify-center items-center flex-col gap-6">
-    {%if profile.pfp%}
+        {%if profile.pfp%}
             <img src="{{profile.pfp.url}}" alt="foto de {{user.username}}" class="rounded-full w-16 h-16">
         {%else%}
             <img src="" alt="" class="rounded-full w-36 h-36">
