@@ -119,6 +119,9 @@ def restore_task(request, id): ####URL QUE VAI RESTAURAR AS TAREFAS
 @login_required(login_url='login') ###TELA DE TAREFAS FINALIZADAS
 def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
+    paginator=Paginator(tasks, 3)
+    page = request.GET.get('page', 1)
+    tasks = paginator.page(page)
     return render(request, 'done_tasks.html', {'tasks':tasks})
 
 @login_required(login_url='login')
