@@ -13,8 +13,7 @@ urlpatterns = [
     path('edit_task/<int:id>', edit_task, name='edit_task'),
     path('delete_task/<int:id>', delete_task, name='delete_task'),
     path('task_details/<int:id>', task_details, name='task_details'),
-    path('tasks_dashboard', tasks_dashboard, name='dashboard'),
-    path('filter', task_filters, name='filter'),
+    path('dashboard', dashboard, name='dashboard'),
     path('search', search_view, name='search')
 ]
 

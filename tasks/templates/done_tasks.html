@@ -14,8 +14,9 @@
         <div class="p-3 flex flex-col gap-1">
             <h1 class="font-bold text-lg text-wrap">{{task.titulo}}</h1>
             <div>
-                <p class="text-sm text-neutral-600">-Setor: {{task.setor}}</p>
-                <p class="text-sm text-neutral-600">-Usuário: {{task.usuario}}</p>
+                <p class="text-sm text-neutral-600">-<span class="font-bold">Finalizada pelos setor::</span> {{task.setor}}</p>
+                <p class="text-sm text-neutral-600">-<span class="font-bold">Finalizada por: </span>{{task.usuario}}</p>
+                <p class="text-sm text-neutral-600">-<span class="font-bold">Finalizada em:</span> {{task.data_conclusao}}</p>
             </div>
         </div>
         <div class="flex gap-4">
