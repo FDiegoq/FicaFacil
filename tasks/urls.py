@@ -14,7 +14,8 @@ urlpatterns = [
     path('delete_task/<int:id>', delete_task, name='delete_task'),
     path('task_details/<int:id>', task_details, name='task_details'),
     path('dashboard', dashboard, name='dashboard'),
-    path('search', search_view, name='search')
+    path('search', search_view, name='search'),
+    path('search_dones', search_dones, name='search_dones')
 ]
 
 if settings.DEBUG:

@@ -46,9 +46,19 @@ def search_view(request):
     if query:
         tasks = Tarefa.objects.filter(titulo__icontains=query, is_done=False) | Tarefa.objects.filter(descricao__icontains=query, is_done=False)
     else:
-        tasks = Tarefa.objects.none() 
+        tasks = Tarefa.objects.filter(usuario=request.user, is_done=False) 
 
     return render(request, 'search.html', {'tasks': tasks, 'query': query})
+
+@login_required
+def search_dones(request):
+    query = request.GET.get('search', '')
+    if query:
+        tasks = Tarefa.objects.filter(titulo__icontains=query, is_done=True)
+    else:
+        tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
+
+    return render(request, 'search_dones.html', {'tasks': tasks, 'query': query})
 
 @login_required(login_url='login') ##tela pra detalhar as tarefas
 def task_details(request, id):
@@ -121,8 +131,6 @@ def dashboard(request):
     bloqueadas=Tarefa.objects.filter(usuario=request.user, status='Bloqueada').count()
     do_setor=Tarefa.objects.filter(usuario=request.user, setor=request.user.profile.setor, is_done=False,).count()
     para_voce=Tarefa.objects.filter(usuario=request.user, is_done=False).count()
-
-
 
     contexto={
         'concluidas': concluidas,
