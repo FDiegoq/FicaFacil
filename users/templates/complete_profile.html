@@ -2,7 +2,7 @@
 
 {%block main%}
 <h2 class="text-neutral-500 text-2xl font-bold text-cente content-center" >Nos conte mais sobre você!</h2>
-<form method="POST" class="flex flex-grow flex-col gap-2">
+<form method="POST" class="flex flex-grow flex-col gap-2" enctype='multipart/form-data'>
 
     {% csrf_token %}
 
