@@ -108,6 +108,7 @@ def finish_task(request, id):
     task.save()
     return redirect('home')
 
+@login_required(login_url='login')
 def restore_task(request, id): ####URL QUE VAI RESTAURAR AS TAREFAS
     task=Tarefa.objects.get(id=id)
     task.is_done=False
@@ -122,6 +123,14 @@ def done_tasks(request):
 
 @login_required(login_url='login')
 def profile(request):
+    tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
+    
+    try:
+        perfil_logado=Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+       return HttpResponse('Você não possui um perfil associado. Complete seu perfil para acessar essa página')
+
+    
 
     return render(request, 'profile.html')
 

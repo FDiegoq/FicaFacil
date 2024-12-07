@@ -3,17 +3,143 @@
 {%block title%} Home {%endblock%}
 
 {%block main%}
-<div class="p-4 self-center text-center flex justify-center items-center flex-col gap-6">
-    <h2 class="text-2xl font-semibold">Seu Perfil</h2>
+<div class="p-4 text-center flex justify-between items-center flex-col gap-6">
+    <h2 class="text-2xl font-semibold ">Seu Perfil</h2>
     
-    <div>
-        <div>
-
+    <div class="flex gap-12">
+        <div class="flex flex-col items-start justify-start gap-4">
+            <h2 class="text-2xl semi-bold">Sobre você</h2>
+            <div class="flex flex-col bg-neutral-900 p-8 rounded-lg gap-4 w-96">
+                <div class="flex gap-4">
+                    <div>
+                        <img src="{{profile.pfp.url}}" alt="" class="rounded-full w-24 h-24">
+                    </div>
+                    <div class="flex items-start justify-start flex-col gap-2">
+                        <div class="flex items-start justify-start flex-col gap-2">
+                            <p class="text-2xl font-bold">{{user.username}}</p>
+                            <div class="flex gap-2">
+                                <p class="text-neutral-400">{{profile.setor}}</p>
+                                <p>-</p>
+                                <p class="text-neutral-400">{{profile.empresa}}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <i class="material-icons">favorite</i>
+                            <i class="material-icons">bookmark</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-1">
+                        <i class="material-icons">email</i>
+                        {% if user.email %}
+                            <p>{{user.email}}</p>
+                        {% else %}
+                            <p>no email</p>
+                        {%endif%}
+                    </div>
+                    <div class="flex gap-1">
+                        <i class="material-icons">email</i>
+                        {% if user.email %}
+                            <p>{{user.email}}</p>
+                        {% else %}
+                            <p>no email</p>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-
+        <div class="flex flex-col items-start justify-start gap-4">
+            <h2 class="text-2xl semi-bold">Estatísticas</h2>
+            <div class="flex flex-col bg-neutral-900 p-8 rounded-lg gap-4 w-96">
+                <div class="flex justify-between items-center">
+                    <div class="flex gap-2">
+                        <i class="material-icons">check_circle</i>
+                        <p>Tarefas Concluídas</p>
+                    </div>
+                    <p>12</p>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex gap-2">
+                        <i class="material-icons">schedule</i>
+                        <p>Tarefas Concluídas</p>
+                    </div>
+                    <p>12</p>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex gap-2">
+                        <i class="material-icons">close</i>
+                        <p>Tarefas Concluídas</p>
+                    </div>
+                    <p>12</p>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+<div class="flex flex-grow flex-col bg-neutral-900 p-4 rounded-lg gap-4">
+    <h2 class="font-bold text-2xl">Tarefas recentes</h2>
+    <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+            <i class="material-icons">check_circle</i>
+            <p>Tarefa tal sobre tal</p>
+        </div>
+        <div class="flex gap-4">
+            <p>Concluída</p>
+            <p>07-12-2024</p>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+            <i class="material-icons">check_circle</i>
+            <p>Tarefa tal sobre tal</p>
+        </div>
+        <div class="flex gap-4">
+            <p>Concluída</p>
+            <p>07-12-2024</p>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+            <i class="material-icons">check_circle</i>
+            <p>Tarefa tal sobre tal</p>
+        </div>
+        <div class="flex gap-4">
+            <p>Concluída</p>
+            <p>07-12-2024</p>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+            <i class="material-icons">check_circle</i>
+            <p>Tarefa tal sobre tal</p>
+        </div>
+        <div class="flex gap-4">
+            <p>Concluída</p>
+            <p>07-12-2024</p>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+            <i class="material-icons">check_circle</i>
+            <p>Tarefa tal sobre tal</p>
+        </div>
+        <div class="flex gap-4">
+            <p>Concluída</p>
+            <p>07-12-2024</p>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+            <i class="material-icons">check_circle</i>
+            <p>Tarefa tal sobre tal</p>
+        </div>
+        <div class="flex gap-4">
+            <p>Concluída</p>
+            <p>07-12-2024</p>
+        </div>
+    </div>
+
 </div>
 {%endblock%}
