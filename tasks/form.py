@@ -1,5 +1,6 @@
 from django import forms
 from tasks.models import Tarefa
+from users.models import Profile
 
 class taskModelForm(forms.ModelForm):
     class Meta():
@@ -27,6 +28,11 @@ class taskModelForm(forms.ModelForm):
                 'placeholder' : 'Digite seu nome de usuário'
             })
         }
+    def __init__(self, *args, **kwargs):
+        empresa = kwargs.pop('empresa', None)
+        super().__init__(*args, **kwargs)
+        if empresa:
+            self.fields['usuario'].queryset = Profile.objects.filter(empresa=empresa)
 class FilterTask(forms.ModelForm):
     class Meta():
         model=Tarefa

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     pfp=models.ImageField(upload_to='pfps/', blank=True, null=True)
-    empresa = models.ForeignKey('tasks.Empresa', on_delete=models.CASCADE, null=True, blank=True)
+    empresa = models.ForeignKey('tasks.Empresa', on_delete=models.CASCADE, null=False, blank=False)
     setor=models.ForeignKey('tasks.Setor', on_delete=models.CASCADE, null=False, blank=False)
 
     def __str__(self):

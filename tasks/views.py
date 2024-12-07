@@ -81,9 +81,9 @@ def create_task(request):
     except Profile.DoesNotExist:
        return HttpResponse('Você não possui um perfil associado. Complete seu perfil para habilitar a criação de tarefas.')
     
-    form=taskModelForm()
+    form=taskModelForm(empresa=perfil_logado.empresa)
     if request.method=='POST':
-        form=taskModelForm(request.POST)
+        form=taskModelForm(request.POST, empresa=perfil_logado.empresa)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -117,8 +117,21 @@ def profile(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    tasks=Tarefa.objects.filter(is_done=True)
+    concluidas=Tarefa.objects.filter(usuario=request.user, is_done=True).count()
+    bloqueadas=Tarefa.objects.filter(usuario=request.user, status='Bloqueada').count()
+    do_setor=Tarefa.objects.filter(usuario=request.user, setor=request.user.profile.setor, is_done=False,).count()
+    para_voce=Tarefa.objects.filter(usuario=request.user, is_done=False).count()
 
-    return render(request, 'dashboard.html')
+
+
+    contexto={
+        'concluidas': concluidas,
+        'bloqueadas': bloqueadas,
+        'do_setor' : do_setor,
+        'para_voce': para_voce
+ 
+    }
+
+    return render(request, 'dashboard.html', contexto)
 
 

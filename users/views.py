@@ -54,7 +54,7 @@ def exitlogout(request):
 def complete_profile(request):
     form=profileModelForm()
     if request.method=="POST":
-        form=profileModelForm(request.POST)
+        form=profileModelForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user=request.user
