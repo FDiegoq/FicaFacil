@@ -1,0 +1,22 @@
+{% extends 'tasks/base.html' %}
+
+{%block title%} Home {%endblock%}    
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{%static 'JS/dashboard.js' %}"></script>
+{%block main%} 
+<div class="flex gap-4 p-2 flex-grow items-center justify-center">
+    <div class="bg-neutral-900 rounded-lg p-4">
+      <p class="text-base""><span class="text-sky-600 font-bold text-lg">12</span> para você</p>
+    </div>
+    <div class="bg-neutral-900 rounded-lg p-4">
+      <p class="text-base""><span class="text-sky-600 font-bold text-lg">15</span> para o setor</p>
+    </div>
+    <div class="bg-neutral-900 rounded-lg p-4">
+      <p class="text-base"><span class="text-sky-600 font-bold text-lg">15</span> bloqueadas</p>
+    </div>
+    <div class="bg-neutral-900 rounded-lg p-4">
+      <p class="text-base""><span class="text-sky-600 font-bold text-lg">15</span> concluídas</p>
+    </div>
+</div>
+{%endblock%}

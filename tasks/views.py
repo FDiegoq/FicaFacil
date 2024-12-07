@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+
 from tasks.models import Tarefa
 from users.models import Profile
+
 from .form import taskModelForm
 from .form import FilterTask
+
 from django.core.paginator import Paginator
+
+import plotly.express as px
+from datetime import datetime
+import pytz
+
 # Create your views here.
 
 @login_required(login_url='login')
@@ -86,6 +94,7 @@ def finish_task(request, id):
     task=Tarefa.objects.get(id=id)
     task.is_done=True
     task.status='Finalizada'
+    task.data_conclusao=datetime.now().astimezone(pytz.timezone('America/Sao_Paulo'))
     task.save()
     return redirect('home')
 
@@ -102,16 +111,14 @@ def done_tasks(request):
     return render(request, 'done_tasks.html', {'tasks':tasks})
 
 @login_required(login_url='login')
-def tasks_dashboard(request):
-    return render(request, 'tasks_dashboard.html')
-
-@login_required(login_url='login') ##Perfil do usuário
-def task_filters(request):
-    if request.method=='GET': 
-        filtradas=Tarefa.objects.filter(titulo='icontais__'),
-    return render(request, 'home.html')
-
-@login_required(login_url='login')
 def profile(request):
 
     return render(request, 'profile.html')
+
+@login_required(login_url='login')
+def dashboard(request):
+    tasks=Tarefa.objects.filter(is_done=True)
+
+    return render(request, 'dashboard.html')
+
+
