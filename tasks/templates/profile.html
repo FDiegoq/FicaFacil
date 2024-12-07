@@ -3,23 +3,16 @@
 {%block title%} Home {%endblock%}
 
 {%block main%}
-<div class="self-center text-center flex justify-center items-center flex-col gap-6">
-        {%if profile.pfp%}
-            <img src="{{profile.pfp.url}}" alt="foto de {{user.username}}" class="rounded-full w-16 h-16">
-        {%else%}
-            <img src="" alt="" class="rounded-full w-36 h-36">
-        {%endif%}
-        <h2 class="text-2xl font-bold">{{profile.user}}</h2>
-    <div class="">
-        <div class="border-2 p-4 rounded-md flex gap-4">
-            <div>
-                <i class="material-icons">business</i>
-                <p>{{profile.empresa}}</p>
-            </div>
-            <div>
-                <i class="material-icons">groups</i>
-                <p>{{profile.setor}}</p>
-            </div>
+<div class="p-4 self-center text-center flex justify-center items-center flex-col gap-6">
+    <h2 class="text-2xl font-semibold">Seu Perfil</h2>
+    
+    <div>
+        <div>
+
+        </div>
+
+        <div>
+
         </div>
     </div>
 </div>

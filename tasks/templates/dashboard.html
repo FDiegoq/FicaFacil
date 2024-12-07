@@ -7,16 +7,19 @@
 {%block main%} 
 <div class="flex gap-4 p-2 flex-grow items-center justify-center">
     <div class="bg-neutral-900 rounded-lg p-4">
-      <p class="text-base""><span class="text-sky-600 font-bold text-lg">12</span> para você</p>
+      <p class="text-base""><span class="text-sky-600 font-bold text-lg">{{para_voce}}</span> para você</p>
     </div>
     <div class="bg-neutral-900 rounded-lg p-4">
-      <p class="text-base""><span class="text-sky-600 font-bold text-lg">15</span> para o setor</p>
+      <p class="text-base""><span class="text-sky-600 font-bold text-lg">{{do_setor}}</span> para o setor</p>
     </div>
     <div class="bg-neutral-900 rounded-lg p-4">
-      <p class="text-base"><span class="text-sky-600 font-bold text-lg">15</span> bloqueadas</p>
+      <p class="text-base"><span class="text-sky-600 font-bold text-lg">{{bloqueadas}}</span> bloqueadas</p>
     </div>
     <div class="bg-neutral-900 rounded-lg p-4">
-      <p class="text-base""><span class="text-sky-600 font-bold text-lg">15</span> concluídas</p>
+      <p class="text-base""><span class="text-sky-600 font-bold text-lg">{{concluidas}}</span> concluídas</p>
     </div>
+</div>
+<div>
+  {{ chart | safe }}
 </div>
 {%endblock%}

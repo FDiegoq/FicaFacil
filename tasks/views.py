@@ -117,8 +117,21 @@ def profile(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    tasks=Tarefa.objects.filter(is_done=True)
+    concluidas=Tarefa.objects.filter(usuario=request.user, is_done=True).count()
+    bloqueadas=Tarefa.objects.filter(usuario=request.user, status='Bloqueada').count()
+    do_setor=Tarefa.objects.filter(usuario=request.user, setor=request.user.profile.setor, is_done=False,).count()
+    para_voce=Tarefa.objects.filter(usuario=request.user, is_done=False).count()
 
-    return render(request, 'dashboard.html')
+
+
+    contexto={
+        'concluidas': concluidas,
+        'bloqueadas': bloqueadas,
+        'do_setor' : do_setor,
+        'para_voce': para_voce
+ 
+    }
+
+    return render(request, 'dashboard.html', contexto)
 
 
