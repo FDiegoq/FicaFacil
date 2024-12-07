@@ -34,5 +34,8 @@
 {%empty%}
     <h2 class="text-neutral-500 text-2xl font-bold text-center mt-4">Parece que você ainda não concluiu tarefas!</h2>
 {%endfor%}
+<div class="">
+    {% include 'components/paginator.html' with page_obj=tasks %}
+ </div>
 </div>
 {% endblock %}
