@@ -81,9 +81,9 @@ def create_task(request):
     except Profile.DoesNotExist:
        return HttpResponse('Você não possui um perfil associado. Complete seu perfil para habilitar a criação de tarefas.')
     
-    form=taskModelForm()
+    form=taskModelForm(empresa=perfil_logado.empresa)
     if request.method=='POST':
-        form=taskModelForm(request.POST)
+        form=taskModelForm(request.POST, empresa=perfil_logado.empresa)
         if form.is_valid():
             form.save()
             return redirect('home')
