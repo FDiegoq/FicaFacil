@@ -37,7 +37,6 @@ def home(request):
         'user': user_logado,
         'filtertask': filtertask,
     }
-    
     return render(request, 'home.html', context)
 
 @login_required
@@ -143,6 +142,8 @@ def dashboard(request):
     bloqueadas=Tarefa.objects.filter(usuario=request.user, status='Bloqueada').count()
     do_setor=Tarefa.objects.filter(usuario=request.user, setor=request.user.profile.setor, is_done=False,).count()
     para_voce=Tarefa.objects.filter(usuario=request.user, is_done=False).count()
+
+
 
     contexto={
         'concluidas': concluidas,
