@@ -1,6 +1,7 @@
 from django import forms
 from tasks.models import Tarefa
-from users.models import Profile
+from django.contrib.auth.models import User
+
 
 class taskModelForm(forms.ModelForm):
     class Meta():
@@ -32,7 +33,7 @@ class taskModelForm(forms.ModelForm):
         empresa = kwargs.pop('empresa', None)
         super().__init__(*args, **kwargs)
         if empresa:
-            self.fields['usuario'].queryset = Profile.objects.filter(empresa=empresa)
+            self.fields['usuario'].queryset = User.objects.filter(profile__empresa=empresa)
 class FilterTask(forms.ModelForm):
     class Meta():
         model=Tarefa
