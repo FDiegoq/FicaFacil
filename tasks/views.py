@@ -86,17 +86,17 @@ def delete_task(request, id):
 @login_required(login_url='login') ####Tela para criar novas tarefas
 def create_task(request):
     try:
-        perfil_logado=Profile.objects.get(user=request.user)
+        perfil_logado = Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
-       return HttpResponse('Você não possui um perfil associado. Complete seu perfil para habilitar a criação de tarefas.')
+        return HttpResponse('Você não possui um perfil associado. Complete seu perfil para habilitar a criação de tarefas.')
     
-    form=taskModelForm(empresa=perfil_logado.empresa)
-    if request.method=='POST':
-        form=taskModelForm(request.POST, empresa=perfil_logado.empresa)
+    form = taskModelForm(empresa=perfil_logado.empresa)
+    if request.method == 'POST':
+        form = taskModelForm(request.POST, empresa=perfil_logado.empresa)
         if form.is_valid():
             form.save()
             return redirect('home')
-    return render(request,'create_task.html', {'form':form})
+    return render(request, 'create_task.html', {'form': form})
 
 @login_required(login_url='login') ###URL que finaliza tarefas
 def finish_task(request, id):
@@ -117,7 +117,7 @@ def restore_task(request, id): ####URL QUE VAI RESTAURAR AS TAREFAS
 
 @login_required(login_url='login') ###TELA DE TAREFAS FINALIZADAS
 def done_tasks(request):
-    tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
+    tasks=Tarefa.objects.filter(usuario=request.user, is_done=True).order_by('titulo')
     paginator=Paginator(tasks, 3)
     page = request.GET.get('page', 1)
     tasks = paginator.page(page)
