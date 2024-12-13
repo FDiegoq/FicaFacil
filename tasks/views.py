@@ -118,9 +118,11 @@ def restore_task(request, id): ####URL QUE VAI RESTAURAR AS TAREFAS
 @login_required(login_url='login') ###TELA DE TAREFAS FINALIZADAS
 def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True).order_by('titulo')
+
     paginator=Paginator(tasks, 3)
     page = request.GET.get('page', 1)
     tasks = paginator.page(page)
+    
     return render(request, 'done_tasks.html', {'tasks':tasks})
 
 @login_required(login_url='login')
@@ -143,14 +145,46 @@ def dashboard(request):
     do_setor=Tarefa.objects.filter(usuario=request.user, setor=request.user.profile.setor, is_done=False,).count()
     para_voce=Tarefa.objects.filter(usuario=request.user, is_done=False).count()
 
+    fig = px.bar(
+        x=['Concluídas', 'Bloqueadas', 'Do setor', 'Para você'],
+        y=[concluidas, bloqueadas, do_setor, para_voce],
+        labels={'x': 'Tarefas', 'y': 'Quantidade'},
+        title='Tarefas por status',
+        color_discrete_sequence=['#0EA5E9']
 
+    )
+    fig.update_layout(
+        title_font_size=20,
+        title_font_color='Gray',
+        xaxis_title_font_size=20,
+        yaxis_title_font_size=20,
+        xaxis_tickfont_size=16,
+        yaxis_tickfont_size=16,
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(
+            family="Poppins, sans-serif",
+            size=12,
+            color="antiquewhite"
+        )
+    )
+    config = {
+    'staticPlot': False,  # True if you want a static plot
+    'scrollZoom': False,
+    'displayModeBar': False,  # Hide the mode bar
+    'editable': False,
+    'displaylogo': False,
+    'modeBarButtonsToRemove': ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'resetScale2d']
+}
 
-    contexto={
+    barchart=fig.to_html(config=config)
+
+    contexto = {
         'concluidas': concluidas,
         'bloqueadas': bloqueadas,
-        'do_setor' : do_setor,
-        'para_voce': para_voce
- 
+        'do_setor': do_setor,
+        'para_voce': para_voce,
+        'barchart': barchart,
     }
 
     return render(request, 'dashboard.html', contexto)

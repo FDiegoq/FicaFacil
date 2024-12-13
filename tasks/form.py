@@ -2,7 +2,6 @@ from django import forms
 from tasks.models import Tarefa
 from django.contrib.auth.models import User
 
-
 class taskModelForm(forms.ModelForm):
     class Meta():
         model=Tarefa
