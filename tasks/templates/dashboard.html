@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{%static 'JS/dashboard.js' %}"></script>
 {%block main%} 
-<div class="flex gap-4 p-2 flex-grow items-center justify-center">
+<div class="flex gap-4 p-4 flex-grow items-center justify-center">
     <div class="bg-neutral-900 rounded-lg p-4 flex items-center justify-center gap-2">
       <p class="text-base"><span class="text-sky-600 font-bold text-lg">{{para_voce}}</span> Tarefas para você</p>
     </div>
@@ -21,5 +21,8 @@
 </div>
 <div>
   {{ barchart | safe }}
+</div>
+<div>
+  {{ piechart | safe }}
 </div>
 {%endblock%}

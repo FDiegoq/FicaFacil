@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from tasks.models import Tarefa
+from tasks.models import Tarefa, Setor
 from users.models import Profile
 
 from .form import taskModelForm
@@ -53,7 +53,7 @@ def search_view(request):
 def search_dones(request):
     query = request.GET.get('search', '')
     if query:
-        tasks = Tarefa.objects.filter(titulo__icontains=query, is_done=True)
+        tasks = Tarefa.objects.filter(titulo__icontains==query, is_done=True)
     else:
         tasks=Tarefa.objects.filter(usuario=request.user, is_done=True)
 
@@ -119,7 +119,7 @@ def restore_task(request, id): ####URL QUE VAI RESTAURAR AS TAREFAS
 def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True).order_by('titulo')
 
-    paginator=Paginator(tasks, 3)
+    paginator=Paginator(tasks, 5)
     page = request.GET.get('page', 1)
     tasks = paginator.page(page)
     
@@ -178,6 +178,30 @@ def dashboard(request):
 }
 
     barchart=fig.to_html(config=config)
+    user_profile=request.user.profile
+
+    valores=[task.setor for task in Tarefa.objects.filter(is_done=True,)]
+
+    figure=px.pie(
+        values=[valores.count(setor) for setor in user_profile.empresa.setor_set.all()],
+        names=[setor.nome for setor in user_profile.empresa.setor_set.all()],
+        title='Tarefas concluídas por setor',
+    )
+
+    figure.update_layout(
+        title_font_size=20,
+        title_font_color='Gray',
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(
+            family="Poppins, sans-serif",
+            size=12,
+            color="antiquewhite"
+        )
+    )
+
+    piechart=figure.to_html(config=config)
+
 
     contexto = {
         'concluidas': concluidas,
@@ -185,6 +209,7 @@ def dashboard(request):
         'do_setor': do_setor,
         'para_voce': para_voce,
         'barchart': barchart,
+        'piechart': piechart
     }
 
     return render(request, 'dashboard.html', contexto)
