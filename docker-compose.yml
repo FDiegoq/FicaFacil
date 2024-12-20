@@ -1,42 +1,38 @@
-version: '3.8'
+version: "3"
 
 services:
-  web:
+  django:
     build:
       context: .
-      dockerfile: app/Dockerfile
-    container_name: fica_facil_web
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./app:/app
-      - ./static:/app/static
-    env_file:
-      - .env
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
+      dockerfile: ./compose/django/Dockerfile
 
-  db:
-    image: postgres:15
-    container_name: fica_facil_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    image: ficafacil
+    depends_on:
+      - nginx
     env_file:
       - .env
-    ports:
-      - "5432:5432"
+    volumes:
+      - static_data:/app/staticfiles
+      - banco_data:/app/banco
+      - media_data:/app/media
+    #    ports:
+    #      - '5000:5000'
+    command: ./start
+    restart: unless-stopped
 
   nginx:
     build:
-      context: ./nginx
-    container_name: fica_facil_nginx
+      context: .
+      dockerfile: ./compose/nginx/Dockerfile
     volumes:
-      - ./static:/static
+      - static_data:/app/staticfiles
+      - media_data:/app/media
     ports:
-      - "80:80"
-    depends_on:
-      - web
+      - 84:80
+    restart: unless-stopped
+
 
 volumes:
-  postgres_data:
+  static_data:
+  banco_data:
+  media_data:
