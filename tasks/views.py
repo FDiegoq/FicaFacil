@@ -22,6 +22,7 @@ def home(request):
     setor=request.GET.get('setor')
     status=request.GET.get('status')
 
+
     if status or setor: ##testa se nao é vazio
         if setor:
             tasks=Tarefa.objects.filter(usuario=user_logado, is_done=False, setor=setor) ##apenas setor
@@ -120,9 +121,7 @@ def done_tasks(request):
     tasks=Tarefa.objects.filter(usuario=request.user, is_done=True).order_by('titulo')
 
     paginator=Paginator(tasks, 5)
-    page = request.GET.get('page', 1)
-    tasks = paginator.page(page)
-    
+    page=request.GET.get('page', 1)
     return render(request, 'done_tasks.html', {'tasks':tasks})
 
 @login_required(login_url='login')
@@ -133,8 +132,6 @@ def profile(request):
         perfil_logado=Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
        return HttpResponse('Você não possui um perfil associado. Complete seu perfil para acessar essa página')
-
-    
 
     return render(request, 'profile.html')
 
